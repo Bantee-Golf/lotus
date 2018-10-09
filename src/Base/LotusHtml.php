@@ -7,6 +7,7 @@ use EMedia\Lotus\Elements\EmptyStatePanel;
 use EMedia\Lotus\Elements\Page\ExplainPanel;
 use EMedia\Lotus\Elements\Page\PageHeadline;
 use EMedia\Lotus\Elements\Page\PaginationLinks;
+use EMedia\Lotus\Elements\Page\SearchField;
 use EMedia\Lotus\Elements\TableHeader;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Spatie\Html\Attributes;
@@ -133,6 +134,11 @@ class LotusHtml extends Html
 	public function pageNumbers(LengthAwarePaginator $paginator)
 	{
 		return PaginationLinks::create()->withPaginator($paginator);
+	}
+
+	public function searchField()
+	{
+		return SearchField::create();
 	}
 
 }

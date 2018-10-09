@@ -58,6 +58,9 @@ Render a table `<thead>` section
 
 ```
 {{ lotus()->tableHeader('ID', 'Name', 'Age', 'Actions') }}
+
+{{-- Pass a CSS Class --}}
+{{ lotus()->tableHeader('ID', 'Name', 'Age', 'Actions|text-right') }}
 ```
 
 ##### Page Numbers (Pagination)
@@ -67,6 +70,14 @@ Show the page number links for a page. Accepts a `LengthAwarePaginator` object.
 ```
 {{ lotus()->pageNumbers(Users::paginate()) }}
 ```
+
+##### Search Field
+
+Get a query string and post back to the same page with a `q` in the URL
+```
+{{ lotus()->searchField() }}
+```
+
 
 ### Creating Custom Elements
 
