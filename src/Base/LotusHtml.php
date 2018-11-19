@@ -9,7 +9,7 @@ use EMedia\Lotus\Elements\Page\PageHeadline;
 use EMedia\Lotus\Elements\Page\PaginationLinks;
 use EMedia\Lotus\Elements\Page\SearchField;
 use EMedia\Lotus\Elements\TableHeader;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\Paginator;
 use Spatie\Html\Attributes;
 //use Spatie\Html\Elements\A;
 //use Spatie\Html\Elements\I;
@@ -127,11 +127,11 @@ class LotusHtml extends Html
 	}
 
 	/**
-	 * @param LengthAwarePaginator $paginator
+	 * @param Paginator $paginator
 	 *
 	 * @return mixed
 	 */
-	public function pageNumbers(LengthAwarePaginator $paginator)
+	public function pageNumbers(Paginator $paginator)
 	{
 		return PaginationLinks::create()->withPaginator($paginator);
 	}

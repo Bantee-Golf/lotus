@@ -5,7 +5,7 @@ namespace EMedia\Lotus\Elements\Page;
 
 
 use EMedia\Lotus\Base\BaseElement;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\HtmlString;
 
 class PaginationLinks extends BaseElement
@@ -13,7 +13,7 @@ class PaginationLinks extends BaseElement
 
 	protected $paginator;
 
-	public function withPaginator(LengthAwarePaginator $paginator)
+	public function withPaginator(Paginator $paginator)
 	{
 		$this->paginator = $paginator;
 
@@ -25,7 +25,7 @@ class PaginationLinks extends BaseElement
 		/** @var Request $request */
 		$request = request();
 
-		/** @var LengthAwarePaginator $paginator */
+		/** @var Paginator $paginator */
 		$paginator = $this->paginator;
 
 		if (!$paginator) throw new \InvalidArgumentException("The paginator provided is invalid");
