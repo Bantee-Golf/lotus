@@ -15,7 +15,7 @@ class LocationConfig
 		$this->attributes['inputFieldPrefix'] = '';
 		$this->attributes['searchBoxElementId'] = 'js-places-autocomplete';
 		$this->attributes['mapElementId'] = 'map';
-		$this->attributes['showAddressComponents'] = true;
+		$this->attributes['showAddressComponents'] = false;
 		$this->attributes['showMap'] = true;
 		$this->attributes['address'] = null;
 		$this->attributes['autoCompleteOptions'] = null;
