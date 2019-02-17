@@ -5,6 +5,8 @@ namespace EMedia\Lotus\Base;
 use EMedia\Lotus\Elements\Page\Breadcrumbs;
 use EMedia\Lotus\Elements\EmptyStatePanel;
 use EMedia\Lotus\Elements\Page\ExplainPanel;
+use EMedia\Lotus\Elements\Page\Location\LocationConfig;
+use EMedia\Lotus\Elements\Page\Location\LocationField;
 use EMedia\Lotus\Elements\Page\PageHeadline;
 use EMedia\Lotus\Elements\Page\PaginationLinks;
 use EMedia\Lotus\Elements\Page\SearchField;
@@ -139,6 +141,29 @@ class LotusHtml extends Html
 	public function searchField()
 	{
 		return SearchField::create();
+	}
+
+	/**
+	 * @return LocationConfig
+	 */
+	public function locationConfig()
+	{
+		return new LocationConfig();
+	}
+
+	/**
+	 *
+	 * Create a Google Places Autocomplete field with a map
+	 *
+	 * @param LocationConfig|null $locationConfig
+	 *
+	 * @return LocationField
+	 */
+	public function locationField(LocationConfig $locationConfig = null)
+	{
+		$locationConfig = ($locationConfig) ?? new LocationConfig();
+
+		return LocationField::create()->withConfig($locationConfig);
 	}
 
 }
