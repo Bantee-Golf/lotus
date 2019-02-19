@@ -12,12 +12,33 @@ class LocationField extends BaseElement
 
 	/** @var LocationConfig $inputFieldPrefix */
 	protected $locationConfig = null;
+	protected $model = [];
 
 	public function withConfig(LocationConfig $locationConfig)
 	{
 		$this->locationConfig = $locationConfig;
 
 		return $this;
+	}
+
+	public function withEloquentModel($model)
+	{
+		$this->model = $model;
+
+		return $this;
+	}
+
+	protected function getFieldValue($fieldName)
+	{
+		$returnValue = '';
+
+		if ($this->model) {
+			$returnValue = $this->model->$fieldName;
+		}
+
+		if ($this->locationConfig->$fieldName) $returnValue = $this->locationConfig->$fieldName;
+
+		return $this->escape($returnValue);
 	}
 
 	/**
@@ -44,7 +65,7 @@ class LocationField extends BaseElement
 		}
 
 		$htmlString .= '<div class="col-sm-12 mb-2">
-					<input type="text" id="' . $searchBoxElementId . '" class="form-control js-autocomplete" name="address" autocomplete="false" value="' . $this->escape($this->locationConfig->address) . '" >
+					<input type="text" id="' . $searchBoxElementId . '" class="form-control js-autocomplete" name="' . $inputFieldPrefix . 'address" autocomplete="false" value="' . $this->getFieldValue($inputFieldPrefix . 'address') . '" >
 				</div>
 			</div>';
 
@@ -54,41 +75,41 @@ class LocationField extends BaseElement
 					<div class="col-sm-12">
 						<div class="row mb-2">
 							<div class="col-6">
-								<input type="text" name="' . $inputFieldPrefix . 'formatted_address" class="form-control js-autocomplete js-tooltip" data-title="Address" readonly placeholder="(Address)">
+								<input type="text" name="' . $inputFieldPrefix . 'formatted_address" class="form-control js-autocomplete js-tooltip" data-title="Address" readonly placeholder="(Address)" value="' . $this->getFieldValue($inputFieldPrefix . 'formatted_address') . '">
 							</div>
 							<div class="col-3">
-								<input type="text" name="' . $inputFieldPrefix . 'latitude" class="form-control js-autocomplete js-tooltip" data-title="Latitude" readonly placeholder="(Latitude)">
+								<input type="text" name="' . $inputFieldPrefix . 'latitude" class="form-control js-autocomplete js-tooltip" data-title="Latitude" readonly placeholder="(Latitude)" value="' . $this->getFieldValue($inputFieldPrefix . 'latitude') . '">
 							</div>
 							<div class="col-3">
-								<input type="text" name="' . $inputFieldPrefix . 'longitude" class="form-control js-autocomplete js-tooltip" data-title="Longitude" readonly placeholder="(Longitude)">
+								<input type="text" name="' . $inputFieldPrefix . 'longitude" class="form-control js-autocomplete js-tooltip" data-title="Longitude" readonly placeholder="(Longitude)" value="' . $this->getFieldValue($inputFieldPrefix . 'longitude') . '">
 							</div>
 						</div>
 						<div class="row mb-2">
 							<div class="col">
-								<input type="text" name="' . $inputFieldPrefix . 'street" class="form-control js-autocomplete js-tooltip" data-title="Street" readonly placeholder="(Street)">
+								<input type="text" name="' . $inputFieldPrefix . 'street" class="form-control js-autocomplete js-tooltip" data-title="Street" readonly placeholder="(Street)" value="' . $this->getFieldValue($inputFieldPrefix . 'street') . '">
 							</div>
 							<div class="col">
-								<input type="text" name="' . $inputFieldPrefix . 'street_2" class="form-control js-autocomplete js-tooltip" data-title="Street 2" readonly placeholder="(Street 2)">
+								<input type="text" name="' . $inputFieldPrefix . 'street_2" class="form-control js-autocomplete js-tooltip" data-title="Street 2" readonly placeholder="(Street 2)" value="' . $this->getFieldValue($inputFieldPrefix . 'street_2') . '">
 							</div>
 						</div>
 						<div class="row mb-2">
 							<div class="col">
-								<input type="text" name="' . $inputFieldPrefix . 'city" class="form-control js-autocomplete js-tooltip" data-title="City" readonly placeholder="(City)">
+								<input type="text" name="' . $inputFieldPrefix . 'city" class="form-control js-autocomplete js-tooltip" data-title="City" readonly placeholder="(City)" value="' . $this->getFieldValue($inputFieldPrefix . 'city') . '">
 							</div>
 							<div class="col">
-								<input type="text" name="' . $inputFieldPrefix . 'state" class="form-control js-autocomplete js-tooltip" data-title="State" readonly placeholder="(State)">
+								<input type="text" name="' . $inputFieldPrefix . 'state" class="form-control js-autocomplete js-tooltip" data-title="State" readonly placeholder="(State)" value="' . $this->getFieldValue($inputFieldPrefix . 'state') . '">
 							</div>
 							<div class="col">
-								<input type="text" name="' . $inputFieldPrefix . 'state_iso_code" class="form-control js-autocomplete js-tooltip" data-title="State Code" readonly placeholder="(State Code)">
+								<input type="text" name="' . $inputFieldPrefix . 'state_iso_code" class="form-control js-autocomplete js-tooltip" data-title="State Code" readonly placeholder="(State Code)" value="' . $this->getFieldValue($inputFieldPrefix . 'state_iso_code') . '">
 							</div>
 							<div class="col">
-								<input type="text" name="' . $inputFieldPrefix . 'zip" class="form-control js-autocomplete js-tooltip" data-title="Post Code" readonly placeholder="(Post Code)">
+								<input type="text" name="' . $inputFieldPrefix . 'zip" class="form-control js-autocomplete js-tooltip" data-title="Post Code" readonly placeholder="(Post Code)" value="' . $this->getFieldValue($inputFieldPrefix . 'zip') . '">
 							</div>
 							<div class="col">
-								<input type="text" name="' . $inputFieldPrefix . 'country" class="form-control js-autocomplete js-tooltip" data-title="Country" readonly placeholder="(Country)">
+								<input type="text" name="' . $inputFieldPrefix . 'country" class="form-control js-autocomplete js-tooltip" data-title="Country" readonly placeholder="(Country)" value="' . $this->getFieldValue($inputFieldPrefix . 'country') . '">
 							</div>
 							<div class="col">
-								<input type="text" name="' . $inputFieldPrefix . 'country_iso_code" class="form-control js-autocomplete js-tooltip" data-title="Country Code" readonly placeholder="(Country Code)">
+								<input type="text" name="' . $inputFieldPrefix . 'country_iso_code" class="form-control js-autocomplete js-tooltip" data-title="Country Code" readonly placeholder="(Country Code)" value="' . $this->getFieldValue($inputFieldPrefix . 'country_iso_code') . '">
 							</div>
 						</div>
 					</div>
@@ -106,6 +127,14 @@ class LocationField extends BaseElement
 
 		$autoCompleteOptionString = ($autoCompleteOptions) ? json_encode($autoCompleteOptions) : 'null';
 
+		$lat = $this->getFieldValue($inputFieldPrefix . 'latitude');
+		$lng = $this->getFieldValue($inputFieldPrefix . 'longitude');
+
+		$currentLocation = 'null';
+		if ($lat !== '' && $lng !== '') {
+			$currentLocation = "{lat: $lat, lng: $lng}";
+		}
+
 		$htmlString .= '<script>
 			window._location = window._location || {};
 			if (!window._location.places) window._location.places = [];
@@ -114,6 +143,7 @@ class LocationField extends BaseElement
 				searchBoxElementId: "' . $searchBoxElementId . '",
 				inputFieldPrefix: "' . $inputFieldPrefix .'",
 				autoCompleteOptions: ' . $autoCompleteOptionString . ',
+				currentLocation: ' . $currentLocation . '
 			});
 		</script>';
 

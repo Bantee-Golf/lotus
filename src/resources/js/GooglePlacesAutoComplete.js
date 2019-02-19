@@ -143,11 +143,21 @@ window.initAutoComplete = function() {
 
 			// set the map
 			var mapElement = document.getElementById(mapDataObject.mapElementId);
+
 			if (mapElement) {
 				mapElement.style.width = '100%';
 				mapElement.style.height = '200px';
+
+				// set the default focus location
+				var currentLocation = {lat: -33.8688, lng: 151.2195};
+				var hasInitialLocation = false;
+				if (mapDataObject.currentLocation) {
+					currentLocation = mapDataObject.currentLocation;
+					hasInitialLocation = true;
+				}
+
 				var map = new google.maps.Map(mapElement, {
-					center: {lat: -33.8688, lng: 151.2195},
+					center: currentLocation,
 					zoom: 13,
 					mapTypeId: 'roadmap',
 					mapTypeControl: false,
@@ -160,7 +170,17 @@ window.initAutoComplete = function() {
 					autoCompleteReference.setBounds(map.getBounds());
 				});
 
+				// keep track of all markers
 				var markers = [];
+
+				// show the default marker
+				if (hasInitialLocation && currentLocation) {
+					markers.push(new google.maps.Marker({
+						map: map,
+						position: currentLocation
+					}));
+				}
+
 				// Listen for the event fired when the user selects a prediction and retrieve
 				// more details for that place.
 				autoCompleteReference.addListener('place_changed', function () {

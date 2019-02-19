@@ -159,9 +159,15 @@ class LotusHtml extends Html
 	 *
 	 * @return LocationField
 	 */
-	public function locationField(LocationConfig $locationConfig = null)
+	public function locationField(LocationConfig $locationConfig = null, $existingModel = null)
 	{
 		$locationConfig = ($locationConfig) ?? new LocationConfig();
+
+		if ($existingModel) {
+			return LocationField::create()
+									->withConfig($locationConfig)
+									->withModel($existingModel);
+		}
 
 		return LocationField::create()->withConfig($locationConfig);
 	}
