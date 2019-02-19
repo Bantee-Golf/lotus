@@ -69,9 +69,12 @@ class LocationField extends BaseElement
 				</div>
 			</div>';
 
+		$addressComponentsCss = '';
         if ($this->locationConfig->showAddressComponents) {
+			$addressComponentsCss = 'd-none';
+		}
         	$htmlString .= '
-				<div class="form-group-location location-field-address-components row">
+				<div class="form-group-location location-field-address-components row ' . $addressComponentsCss . '">
 					<div class="col-sm-12">
 						<div class="row mb-2">
 							<div class="col-6">
@@ -114,7 +117,6 @@ class LocationField extends BaseElement
 						</div>
 					</div>
 				</div>';
-		}
 
 		if ($this->locationConfig->showMap) {
 			$htmlString .= '
