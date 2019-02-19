@@ -70,7 +70,7 @@ class LocationField extends BaseElement
 			</div>';
 
 		$addressComponentsCss = '';
-        if ($this->locationConfig->showAddressComponents) {
+        if (!$this->locationConfig->showAddressComponents) {
 			$addressComponentsCss = 'd-none';
 		}
         	$htmlString .= '
