@@ -4,8 +4,8 @@
     "type": "library",
     "require": {
         "php": "^7.0",
-        "illuminate/http": "~5.7.0",
-        "illuminate/support": "~5.7.0",
+        "illuminate/http": "5.7 - 5.8",
+        "illuminate/support": "5.7 - 5.8",
         "spatie/laravel-html": "^2.19"
     },
     "license": "proprietary",
