@@ -33,9 +33,9 @@ class TableHeader extends BaseElement
 			// split the CSS class, delimited by "|"
 			$elements = explode('|', $header);
 			if (isset($elements[1])) {
-				$output .= '<th class="' . $this->escape($elements[1]) . '">' . $this->escape($elements[0]) . '</th>';
+				$output .= '<th class="' . $this->escape($elements[1]) . '">' . $elements[0] . '</th>';
 			} else {
-				$output .= '<th>' . $this->escape($header) . '</th>';
+				$output .= '<th>' . $header . '</th>';
 			}
 		}
 
