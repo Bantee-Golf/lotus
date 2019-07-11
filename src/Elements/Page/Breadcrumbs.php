@@ -40,7 +40,7 @@ class Breadcrumbs extends BaseElement
 				$child = $html->a($segment[1], $segment[0]);
 				$li = $li->addChild($child);
 			} else {
-				$li = $li->text($segment[0]);
+				$li = $li->html($segment[0]);
 			}
 
 			$mergedHtml .= $li->toHtml();
