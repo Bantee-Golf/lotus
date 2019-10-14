@@ -11,6 +11,7 @@ use EMedia\Lotus\Elements\Page\PageHeadline;
 use EMedia\Lotus\Elements\Page\PaginationLinks;
 use EMedia\Lotus\Elements\Page\SearchField;
 use EMedia\Lotus\Elements\TableHeader;
+use EMedia\Lotus\Elements\Dropzone\Uploader;
 use Illuminate\Contracts\Pagination\Paginator;
 use Spatie\Html\Attributes;
 //use Spatie\Html\Elements\A;
@@ -170,6 +171,19 @@ class LotusHtml extends Html
 		}
 
 		return LocationField::create()->withConfig($locationConfig);
+	}
+
+	/**
+	 *
+	 * Creates a Dropzone file uploader
+	 *
+	 * @param array $options
+	 *
+	 * @return Uploader
+	 */
+	public function uploader($options = [])
+	{
+		return Uploader::create()->withOptions($options);
 	}
 
 }
