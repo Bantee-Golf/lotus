@@ -20,6 +20,10 @@ class Uploader extends BaseElement
             'url' => '/manage/files',
         ], $options);
 
+		if (isset($options['view'])) {
+			$this->view = $options['view'];
+		}
+
         return $this;
     }
 
