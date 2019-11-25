@@ -55,12 +55,12 @@ class Uploader extends BaseElement
             'Dropzone.options.dropzoneU' . $this->escape($this->options['id']) . ' = {' . "\n";
 		$js .= "init: function() {\n";
 		if (isset($this->options['attachmentsFormId'])) {
-			$js .= "	this.on('success', function(file) {\n";
+			$js .= "	this.on('success', function(file, res) {\n";
 			$js .= "	var input = document.createElement('input');\n";
 			$js .= "	input.setAttribute('type', 'hidden');\n";
 			$js .= "	input.setAttribute('name', 'attachments[]');\n";
-			$js .= "	input.setAttribute('id', file.upload.uuid);\n";
-			$js .= "	input.setAttribute('value', file.upload.uuid);\n";
+			$js .= "	input.setAttribute('id', res.payload.uuid);\n";
+			$js .= "	input.setAttribute('value', res.payload.uuid);\n";
 			$js .= "	document.getElementById('" . $this->options['attachmentsFormId'] . "').appendChild(input);\n";
 		 	$js .= "});\n";
 
