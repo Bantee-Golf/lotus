@@ -52,13 +52,29 @@ class Uploader extends BaseElement
 
         $js = '<script type="text/javascript" src="' . asset('bower_components/dropzone/dist/min/dropzone.min.js') . '"></script>' . "\n" .
             '<script type="text/javascript">' . "\n" .
-            'Dropzone.options.dropzoneU' . $this->escape($this->options['id']) . ' = {';
+            'Dropzone.options.dropzoneU' . $this->escape($this->options['id']) . ' = {' . "\n";
+		$js .= "init: function() {\n";
+		if (isset($this->options['attachmentsFormId'])) {
+			$js .= "	this.on('success', function(file) {\n";
+			$js .= "	var input = document.createElement('input');\n";
+			$js .= "	input.setAttribute('type', 'hidden');\n";
+			$js .= "	input.setAttribute('name', 'attachments[]');\n";
+			$js .= "	input.setAttribute('id', file.upload.uuid);\n";
+			$js .= "	input.setAttribute('value', file.upload.uuid);\n";
+			$js .= "	document.getElementById('" . $this->options['attachmentsFormId'] . "').appendChild(input);\n";
+		 	$js .= "});\n";
 
+			$js .= "this.on('removedfile', function(file) {\n";
+			$js .= "	console.log(file); document.getElementById(file.upload.uuid).remove();\n";
+		 	$js .= "});\n";
+		}
+		$js .= '},';
         if (!empty($dropzoneOptions)) {
             $js .= "\n" . implode(",\n", $dropzoneOptions) . "\n";
         }
 
-        $js .= '};' . "\n" . '</script>';
+        $js .= '};' . "\n";
+		$js .= '</script>';
 
         $output = $html . "\n\n" . $js;
 
