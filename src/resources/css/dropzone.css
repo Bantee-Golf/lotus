@@ -1,0 +1,207 @@
+@charset "UTF-8";
+.dropzone {
+  border: 2px dashed #CCC;
+  border-radius: 10px;
+  min-height: 150px;
+}
+.dropzone .dz-message {
+  color: #888;
+  text-align: center;
+  padding: 60px 0;
+}
+.dropzone .dz-message:before {
+  content: "\f574";
+  font-family: "Font Awesome 5 Free";
+  font-size: 24px;
+  display: none;
+  height: 24px;
+  width: 24px;
+}
+.dropzone .dz-preview .dz-success-mark, .dropzone .dz-preview .dz-error-mark {
+  border-radius: 12px;
+  display: none;
+  height: 24px;
+  position: relative;
+  width: 24px;
+}
+.dropzone .dz-preview .dz-success-mark svg, .dropzone .dz-preview .dz-error-mark svg {
+  height: 24px;
+  left: 0;
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  width: 24px;
+}
+.dropzone .dz-preview .dz-error-mark {
+  background: #dc3545;
+}
+.dropzone .dz-preview.dz-success .dz-success-mark {
+  display: block;
+}
+.dropzone .dz-preview.dz-error .dz-error-mark {
+  display: none;
+}
+.dropzone input {
+  display: block;
+  height: 0;
+  width: 0;
+}
+.dropzone.dz-clickable {
+  cursor: pointer;
+}
+.dropzone.dz-started .dz-message {
+  padding: 10px 0 20px;
+}
+.dropzone.list .dz-preview {
+  margin: 0 1rem 1rem;
+  position: relative;
+}
+.dropzone.list .dz-preview .dz-image {
+  float: left;
+  height: 80px;
+  width: 80px;
+}
+.dropzone.list .dz-preview .dz-image img {
+  max-width: 100%;
+}
+.dropzone.list .dz-preview .dz-details {
+  margin-left: 100px;
+}
+.dropzone.list .dz-preview .dz-details .dz-filename {
+  color: #888;
+  font-size: small;
+}
+.dropzone.list .dz-preview .dz-progress {
+  background-color: #DDD;
+  height: 3px;
+  margin-left: 100px;
+  margin-top: 4px;
+}
+.dropzone.list .dz-preview .dz-progress .dz-upload {
+  background-color: #28a745;
+  display: block;
+  height: 3px;
+}
+.dropzone.list .dz-preview .dz-error-message {
+  font-size: small;
+  margin: 10px 0 0 100px;
+}
+.dropzone.list .dz-preview .dz-remove {
+  display: inline-block;
+  font-size: small;
+  margin-left: 20px;
+}
+.dropzone.list .dz-preview:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+.dropzone.list .dz-preview.dz-error {
+  opacity: 0.6;
+}
+.dropzone.list .dz-preview.dz-error .dz-progress .dz-upload {
+  background-color: #dc3545;
+}
+.dropzone.list .dz-success-mark, .dropzone.list .dz-error-mark {
+  left: 64px;
+  position: absolute;
+  top: -6px;
+}
+.dropzone.gallery .dz-preview {
+  display: inline-block;
+  height: 80px;
+  margin: 0 1rem 1rem;
+  position: relative;
+  width: 80px;
+}
+.dropzone.gallery .dz-preview .dz-image {
+  float: left;
+  height: 80px;
+  width: 80px;
+}
+.dropzone.gallery .dz-preview .dz-image img {
+  border-radius: 6px;
+  max-width: 100%;
+}
+.dropzone.gallery .dz-preview .dz-details {
+  background: #333;
+  border-radius: 4px;
+  color: #FFF;
+  display: none;
+  font-size: 11px;
+  margin-left: 90px;
+  padding: 4px 8px;
+  position: absolute;
+}
+.dropzone.gallery .dz-preview .dz-details .dz-filename {
+  color: #888;
+  font-size: small;
+}
+.dropzone.gallery .dz-preview .dz-progress {
+  background-color: #DDD;
+  border-radius: 2px;
+  bottom: 4px;
+  height: 3px;
+  left: 5%;
+  position: absolute;
+  width: 90%;
+}
+.dropzone.gallery .dz-preview .dz-progress .dz-upload {
+  background-color: #28a745;
+  border-radius: 2px;
+  display: block;
+  height: 3px;
+}
+.dropzone.gallery .dz-preview .dz-error-message {
+  font-size: small;
+  margin: 10px 0 0 100px;
+}
+.dropzone.gallery .dz-preview .dz-remove {
+  display: block;
+  font-size: 0;
+  position: absolute;
+  right: 4px;
+  text-decoration: none;
+  top: 4px;
+}
+.dropzone.gallery .dz-preview .dz-remove:after {
+  background: #fff;
+  border: 1px solid #dc3545;
+  border-radius: 10px;
+  color: #dc3545;
+  content: "×";
+  display: block;
+  font-size: 16px;
+  height: 20px;
+  line-height: 16px;
+  text-align: center;
+  width: 20px;
+}
+.dropzone.gallery .dz-preview:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+.dropzone.gallery .dz-preview.dz-error {
+  opacity: 0.6;
+}
+.dropzone.gallery .dz-preview.dz-error .dz-progress .dz-upload {
+  background-color: #dc3545;
+}
+.dropzone.gallery .dz-preview:hover .dz-details {
+  display: block;
+  z-index: 1000;
+}
+.dropzone.gallery .dz-success-mark, .dropzone.gallery .dz-error-mark {
+  left: 28px;
+  position: absolute;
+  top: 28px;
+}
+
+/*# sourceMappingURL=dropzone.css.map */
