@@ -52,10 +52,12 @@ class LocationField extends BaseElement
 		if (!$this->locationConfig) throw new \InvalidArgumentException('LocationConfig must be set before rendering a location field.');
 
 		$inputFieldPrefix = $this->escape($this->locationConfig->inputFieldPrefix);
+		$inputFieldCssClass = $this->escape($this->locationConfig->inputFieldCssClass);
 		$fieldLabel = $this->escape($this->locationConfig->fieldLabel);
 		$autoCompleteOptions = $this->locationConfig->autoCompleteOptions;
 		$mapElementId = $this->escape($this->locationConfig->mapElementId);
 		$searchBoxElementId = $this->escape($this->locationConfig->searchBoxElementId);
+		$required = $this->locationConfig->required;
 
 		$htmlString = '
 			<div class="form-group-location location-field-address row">';
@@ -65,7 +67,7 @@ class LocationField extends BaseElement
 		}
 
 		$htmlString .= '<div class="col-sm-12 mb-2">
-					<input type="text" id="' . $searchBoxElementId . '" class="form-control js-autocomplete" name="' . $inputFieldPrefix . 'address" autocomplete="false" value="' . $this->getFieldValue($inputFieldPrefix . 'address') . '" >
+					<input type="text" id="' . $searchBoxElementId . '" class="form-control js-autocomplete' . $inputFieldCssClass . '" name="' . $inputFieldPrefix . 'address" autocomplete="false" value="' . $this->getFieldValue($inputFieldPrefix . 'address') . '"' . ($required ? 'required' : '') . '>
 				</div>
 			</div>';
 

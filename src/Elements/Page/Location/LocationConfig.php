@@ -13,12 +13,14 @@ class LocationConfig
 	{
 		$this->attributes['fieldLabel'] = null;
 		$this->attributes['inputFieldPrefix'] = '';
+		$this->attributes['inputFieldCssClass'] = '';
 		$this->attributes['searchBoxElementId'] = 'js-places-autocomplete';
 		$this->attributes['mapElementId'] = 'map';
 		$this->attributes['showAddressComponents'] = false;
 		$this->attributes['showMap'] = true;
 		$this->attributes['address'] = null;
 		$this->attributes['autoCompleteOptions'] = null;
+		$this->attributes['required'] = false;
 	}
 
 	/**
@@ -78,9 +80,23 @@ class LocationConfig
 		return $this;
 	}
 
+	public function setInputFieldCssClass($class)
+	{
+		$this->attributes['inputFieldCssClass'] = $class;
+
+		return $this;
+	}
+
 	public function setSearchBoxElementId($searchInputFieldId)
 	{
 		$this->attributes['searchBoxElementId'] = $searchInputFieldId;
+
+		return $this;
+	}
+
+	public function required()
+	{
+		$this->attributes['required'] = true;
 
 		return $this;
 	}
