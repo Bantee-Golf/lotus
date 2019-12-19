@@ -21,6 +21,7 @@ class LocationConfig
 		$this->attributes['address'] = null;
 		$this->attributes['autoCompleteOptions'] = null;
 		$this->attributes['required'] = false;
+		$this->attributes['noScripts'] = false;
 	}
 
 	/**
@@ -97,6 +98,13 @@ class LocationConfig
 	public function required()
 	{
 		$this->attributes['required'] = true;
+
+		return $this;
+	}
+
+	public function noScripts()
+	{
+		$this->attributes['noScripts'] = true;
 
 		return $this;
 	}

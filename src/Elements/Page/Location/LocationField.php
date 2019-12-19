@@ -58,6 +58,18 @@ class LocationField extends BaseElement
 		$mapElementId = $this->escape($this->locationConfig->mapElementId);
 		$searchBoxElementId = $this->escape($this->locationConfig->searchBoxElementId);
 		$required = $this->locationConfig->required;
+		$noScripts = $this->locationConfig->noScripts;
+		$searchFieldDataAttributes = '';
+
+		$autoCompleteOptionString = ($autoCompleteOptions) ? json_encode($autoCompleteOptions) : 'null';
+
+		$lat = $this->getFieldValue($inputFieldPrefix . 'latitude');
+		$lng = $this->getFieldValue($inputFieldPrefix . 'longitude');
+
+		$currentLocation = 'null';
+		if ($lat !== '' && $lng !== '') {
+			$currentLocation = "{lat: $lat, lng: $lng}";
+		}
 
 		$htmlString = '
 			<div class="form-group-location location-field-address row">';
@@ -66,10 +78,18 @@ class LocationField extends BaseElement
 			$htmlString .= '<label for="" class="col-sm-2 control-label">' . $fieldLabel . '</label>';
 		}
 
+		if ($noScripts) {
+			$searchFieldDataAttributes = 'data-map-element-id="' . $mapElementId . '"' .
+			'data-search-box-element-id="' . $searchBoxElementId . '"' .
+			'data-input-field-prefix="' . $inputFieldPrefix .'"' .
+			'data-auto-complete-options="' . $autoCompleteOptionString . '"' .
+			'data-current-location="' . $currentLocation . '"';
+		}
+
 		$htmlString .= '<div class="col-sm-12 mb-2">
-					<input type="text" id="' . $searchBoxElementId . '" class="form-control js-autocomplete' . $inputFieldCssClass . '" name="' . $inputFieldPrefix . 'address" autocomplete="false" value="' . $this->getFieldValue($inputFieldPrefix . 'address') . '"' . ($required ? 'required' : '') . '>
-				</div>
-			</div>';
+				<input type="text" id="' . $searchBoxElementId . '" class="form-control js-autocomplete' . $inputFieldCssClass . '" name="' . $inputFieldPrefix . 'address" autocomplete="false" value="' . $this->getFieldValue($inputFieldPrefix . 'address') . '"' . ($required ? 'required' : '') . ' ' . $searchFieldDataAttributes . '>
+			</div>
+		</div>';
 
 		$addressComponentsCss = '';
         if (!$this->locationConfig->showAddressComponents) {
@@ -129,27 +149,19 @@ class LocationField extends BaseElement
 			</div>';
 		}
 
-		$autoCompleteOptionString = ($autoCompleteOptions) ? json_encode($autoCompleteOptions) : 'null';
-
-		$lat = $this->getFieldValue($inputFieldPrefix . 'latitude');
-		$lng = $this->getFieldValue($inputFieldPrefix . 'longitude');
-
-		$currentLocation = 'null';
-		if ($lat !== '' && $lng !== '') {
-			$currentLocation = "{lat: $lat, lng: $lng}";
+		if (!$noScripts) {
+			$htmlString .= '<script>
+				window._location = window._location || {};
+				if (!window._location.places) window._location.places = [];
+				window._location.places.push({
+					mapElementId: "' . $mapElementId . '",
+					searchBoxElementId: "' . $searchBoxElementId . '",
+					inputFieldPrefix: "' . $inputFieldPrefix .'",
+					autoCompleteOptions: ' . $autoCompleteOptionString . ',
+					currentLocation: ' . $currentLocation . '
+				});
+			</script>';
 		}
-
-		$htmlString .= '<script>
-			window._location = window._location || {};
-			if (!window._location.places) window._location.places = [];
-			window._location.places.push({
-				mapElementId: "' . $mapElementId . '",
-				searchBoxElementId: "' . $searchBoxElementId . '",
-				inputFieldPrefix: "' . $inputFieldPrefix .'",
-				autoCompleteOptions: ' . $autoCompleteOptionString . ',
-				currentLocation: ' . $currentLocation . '
-			});
-		</script>';
 
 		return new HtmlString($htmlString);
 	}
