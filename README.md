@@ -18,6 +18,36 @@ Add the repository to `composer.json`
 composer require emedia/lotus
 ```
 
+## Dropzone
+
+Lotus has [Dropzone](https://www.dropzonejs.com/) as a dependency.
+
+There are two options to install the package:
+
+### 1. NPM
+
+Run `npm install --save dropzone` to install the package.
+
+Add the js file by requiring/importing  `dropzone` (usually in *app.js*)
+
+```js
+require('dropzone')
+```
+
+Next, we'll include the styles by importing it into a scss file that's already in the project.
+
+**backend.scss**
+
+```scss
+// Dropzone
+@import '~dropzone/src/dropzone.scss';
+``` 
+
+### 2. Standalone
+
+Manually download the standalone files and view instruction [here](https://www.dropzonejs.com/#installation).
+
+
 ### Available Elements
 
 Use these function calls directly within Blade templates.
