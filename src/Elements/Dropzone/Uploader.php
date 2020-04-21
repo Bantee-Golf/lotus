@@ -50,8 +50,7 @@ class Uploader extends BaseElement
             '<input type="file" name="file" value="">' .
         '</form>';
 
-        $js = '<script type="text/javascript" src="' . asset('bower_components/dropzone/dist/min/dropzone.min.js') . '"></script>' . "\n" .
-            '<script type="text/javascript">' . "\n" .
+        $js = '<script type="text/javascript">' . "\n" .
             'Dropzone.options.dropzoneU' . $this->escape($this->options['id']) . ' = {' . "\n";
 		$js .= "init: function() {\n";
 		if (isset($this->options['attachmentsFormId'])) {
