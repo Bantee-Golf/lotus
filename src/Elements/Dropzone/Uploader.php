@@ -18,6 +18,8 @@ class Uploader extends BaseElement
         $this->options = array_merge([
             'id' => uniqid(),
             'url' => '/manage/files',
+            'attachable_field_key' => 'attachable_uuid',
+            'attachable_field_value' => null,
         ], $options);
 
 		if (isset($options['view'])) {
@@ -46,8 +48,16 @@ class Uploader extends BaseElement
             csrf_field() .
             '<input type="hidden" name="key" value="other">' .
             '<input type="hidden" name="custom_key" value="">' .
-            '<input type="hidden" name="allow_public_access" value="0">' .
-            '<input type="file" name="file" value="">' .
+            '<input type="hidden" name="allow_public_access" value="0">';
+
+        // files are `attached` to a main object most of the time, for example, a Project, Task etc.
+        // we set the key here, so it's easier to attach during the upload
+        // for security, don't let the client-side set the `attachable_type` or update it.
+		if (!empty($this->options['attachable_field_value'])) {
+			$html .= '<input type="hidden" name="' . $this->escape($this->options['attachable_field_key']) . '" value="' . $this->escape($this->options['attachable_field_value']) .'">';
+		}
+
+		$html .= '<div class="fallback"><input type="file" name="file" value=""></div>' .
         '</form>';
 
         $js = '<script type="text/javascript">' . "\n" .
