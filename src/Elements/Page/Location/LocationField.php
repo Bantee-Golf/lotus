@@ -79,11 +79,11 @@ class LocationField extends BaseElement
 		}
 
 		if ($noScripts) {
-			$searchFieldDataAttributes = 'data-map-element-id="' . $mapElementId . '"' .
-			'data-search-box-element-id="' . $searchBoxElementId . '"' .
-			'data-input-field-prefix="' . $inputFieldPrefix .'"' .
-			'data-auto-complete-options="' . $autoCompleteOptionString . '"' .
-			'data-current-location="' . $currentLocation . '"';
+			$searchFieldDataAttributes = 'data-map-element-id="' . $mapElementId . '" ' .
+			'data-search-box-element-id="' . $searchBoxElementId . '" ' .
+			'data-input-field-prefix="' . $inputFieldPrefix .'" ' .
+			'data-auto-complete-options=\'' . $autoCompleteOptionString . '\' ' .
+			'data-current-location="' . $currentLocation . '" ';
 		}
 
 		$htmlString .= '<div class="col-sm-12 mb-2">
