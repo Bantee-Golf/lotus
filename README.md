@@ -18,6 +18,10 @@ Add the repository to `composer.json`
 composer require emedia/lotus
 ```
 
+### Change Log
+
+- v1.4 - Laravel v5 support Dropped. For Laravel v5, use v1.3
+
 ## Dropzone
 
 Lotus has [Dropzone](https://www.dropzonejs.com/) as a dependency.
