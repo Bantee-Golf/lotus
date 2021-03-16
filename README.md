@@ -81,6 +81,18 @@ The last parameter should be `true` if it should be `active`
 {{ lotus()->emptyStatePanel('Welcome to Oxygen', "Let's Build Something New!") }}
 ```
 
+#### Empty Badge
+```
+// This will render a (N/A) badge if the given string is empty.
+{{ lotus()->emptyBadge($object->title) }}
+
+// Customise the text
+{{ lotus()->emptyBadge($string, 'Not Provided') }}
+
+// Custom class
+{{ lotus()->emptyBadge($string, 'Not Provided', 'badge badge-pill badge-warning') }}
+```
+
 #### Explain Panel (Generic HTML)
 ```
 {{ lotus()->explainPanel('<div>Show my thing here</div>') }}

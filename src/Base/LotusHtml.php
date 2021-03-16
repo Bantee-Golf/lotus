@@ -2,6 +2,7 @@
 
 namespace EMedia\Lotus\Base;
 
+use EMedia\Lotus\Elements\EmptyBadge;
 use EMedia\Lotus\Elements\Page\Breadcrumbs;
 use EMedia\Lotus\Elements\EmptyStatePanel;
 use EMedia\Lotus\Elements\Page\ExplainPanel;
@@ -99,6 +100,24 @@ class LotusHtml extends Html
 	public function emptyStatePanel($headline = null, $message = null)
 	{
 		return EmptyStatePanel::create()->withHeadline($headline)->withMessage($message);
+	}
+
+	/**
+	 *
+	 * Create an Empty badge if the given value is empty.
+	 *
+	 * @param $value
+	 * @param string $displayTextIfEmpty
+	 * @param string $class
+	 *
+	 * @return EmptyBadge
+	 */
+	public function emptyBadge($value, $displayTextIfEmpty = 'N/A', $class = 'badge badge-pill badge-secondary')
+	{
+		return EmptyBadge::create()
+				->setValue($value)
+				->setDisplayTextIfEmpty($displayTextIfEmpty)
+				->setClass($class);
 	}
 
 	/**
