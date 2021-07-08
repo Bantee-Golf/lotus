@@ -186,7 +186,7 @@ class LotusHtml extends Html
 		if ($existingModel) {
 			return LocationField::create()
 									->withConfig($locationConfig)
-									->withModel($existingModel);
+									->withEloquentModel($existingModel);
 		}
 
 		return LocationField::create()->withConfig($locationConfig);
