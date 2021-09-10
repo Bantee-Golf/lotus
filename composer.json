@@ -3,7 +3,7 @@
     "description": "Generate HTML elements to make your life easier.",
     "type": "library",
     "require": {
-        "php": "^7.0",
+        "php": "^7.0|^8.0",
         "illuminate/http": "^6.0|^7.0|^8.0",
         "illuminate/support": "^6.0|^7.0|^8.0",
         "spatie/laravel-html": "^2.0"
