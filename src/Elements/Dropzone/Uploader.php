@@ -61,6 +61,7 @@ class Uploader extends BaseElement
         '</form>';
 
         $js = '<script type="text/javascript">' . "\n" .
+        	'window.onload = function() {' .
             'Dropzone.options.dropzoneU' . $this->escape($this->options['id']) . ' = {' . "\n";
 		$js .= "init: function() {\n";
 		if (isset($this->options['attachmentsFormId'])) {
@@ -83,6 +84,7 @@ class Uploader extends BaseElement
         }
 
         $js .= '};' . "\n";
+		$js .= '};' . "\n";
 		$js .= '</script>';
 
         $output = $html . "\n\n" . $js;
