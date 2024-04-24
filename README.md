@@ -2,6 +2,15 @@
 
 Build common HTML elements in 1 line of code.
 
+### Version Compatibility
+
+| Laravel Version | This Package Version               | Branch         |
+| ---------------:| ----------------------------------:|---------------:|
+| v9              | 2.0                                | master         |  
+| v8              | 1.6                                | version/v1.0   |  
+
+See [CHANGE LOG](CHANGELOG.md) for change history.
+
 ### Installation Instructions
 
 Add the repository to `composer.json`

@@ -1,7 +1,13 @@
 # Change Log
 
-## v3.0.0
-- Illuminate 10 Support. Dropped PHP 8.0 support.
+## Version Compatibility
+
+Use versions as below.
+
+| Laravel Version | This Package Version               | Branch         |
+| ---------------:| ----------------------------------:|---------------:|
+| v9              | 2.0                                | master         |  
+| v8              | 1.6                                | version/v1.0   |  
 
 ## v2.0.0
 - Illuminate 9 Support. Dropped PHP 7 support.
